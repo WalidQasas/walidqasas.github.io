@@ -1,0 +1,22 @@
+.headerContainer {
+    background-color: white !important;
+    color: #111517 !important;
+}
+  
+  .headerContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #111517 !important;
+  }
+
+  .darkMode {
+    color: #111517 !important;
+  }
+
+  .darkModeText {
+    font-size: 14px;
+    color: #111517 !important;
+  }
+  
+  
