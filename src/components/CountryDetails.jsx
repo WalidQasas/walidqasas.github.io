@@ -47,6 +47,7 @@ function CountryDetails() {
                     }}
                 />
 
+
                 <Box>
                     <Typography variant="h3" sx={{ fontWeight: theme.typography.fontWeightBold, marginBottom: "24px", marginTop: "50px" }}>
                         {countryData.name.common}
