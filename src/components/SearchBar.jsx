@@ -1,6 +1,7 @@
 import { TextField, InputAdornment } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
-
+// Check why InputProps is deprecated
+// Search is not done, add functionality use memoize
 function SearchBar() {
     return (
         <TextField

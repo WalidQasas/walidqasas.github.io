@@ -1,7 +1,7 @@
 import { SidebarWrapper } from "./styles"
 import { Typography, Box, List } from "@mui/material";
 import FavoriteCountry from "./FavoriteCountry";
-
+// Still not done (needs drag and drop and dynamic way of adding to the list)
 function Sidebar(){
     return(
         <SidebarWrapper>

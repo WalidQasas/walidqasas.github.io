@@ -2,8 +2,7 @@ import React from 'react';
 import { ListItem, ListItemText, IconButton, Box } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import exampleImg from "../assets/flags/br.svg"
-
-
+// Fix the flag size and add a functionality for the x button
 function FavoriteCountry() {
     return (
         <ListItem

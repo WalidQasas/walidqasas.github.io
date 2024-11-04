@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-
+// Add the filter feature, don't forget in the video there is an empty option to showcase all of the countries
 function FilterList() {
     const [region, setRegion] = useState('');
 
