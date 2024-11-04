@@ -9,7 +9,7 @@ function FilterList() {
     };
 
     return (
-        <FormControl variant="outlined" sx={{ minWidth: 200 }}>
+        <FormControl variant="outlined" sx={{ minWidth: 200, mr:"35px"}}>
             <InputLabel>Filter by Region</InputLabel>
             <Select
                 value={region}

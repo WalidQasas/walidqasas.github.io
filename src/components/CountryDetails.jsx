@@ -1,30 +1,37 @@
-import React from 'react';
+// components/CountryDetails.js
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Box, Typography, Button } from '@mui/material';
-import exampleImg from "../assets/flags/de.svg";
+import { Box, Typography, CircularProgress } from '@mui/material';
 import theme from "../assets/theme";
 import CustomButton from './CustomButton';
 
 function CountryDetails() {
-    //const { countryName } = useParams();
-    const countryName  = "Belgium";
+    const { countryName } = useParams();
     const navigate = useNavigate();
-    
-    const countryData = {
-        flag: exampleImg,
-        nativeName: "België",
-        population: "11,319,511",
-        region: "Europe",
-        subRegion: "Western Europe",
-        capital: "Brussels",
-        topLevelDomain: ".be",
-        currencies: "Euro",
-        languages: ["Dutch", "French", "German"],
-        borderCountries: ["France", "Germany", "Netherlands"]
-    };
+    const [countryData, setCountryData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchCountry = async () => {
+            try {
+                const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
+                const data = await response.json();
+                setCountryData(data[0]);
+            } catch (error) {
+                console.error("Error fetching country details:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCountry();
+    }, [countryName]);
+
+    if (loading) return <CircularProgress />;
+    if (!countryData) return <Typography variant="h5">Country not found.</Typography>;
 
     return (
-        <Box sx={{ maxWidth: "1440px", margin: "0 100px" }}>
+        <Box sx={{ maxWidth: "1440px", margin: "0 70px" }}>
             <CustomButton onClick={() => navigate(-1)} startIcon={<span>←</span>}>
                 Back
             </CustomButton>
@@ -32,29 +39,28 @@ function CountryDetails() {
             <Box display="flex" gap={8} alignItems="flex-start">
                 <Box 
                     component="img"
-                    src={countryData.flag}
-                    alt={`${countryName} flag`}
+                    src={countryData.flags?.svg}
+                    alt={`${countryData.name.common} flag`}
                     sx={{
-                        width: "500px",
-                        height: "auto",
-                        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1),0px -2px 4px rgba(0, 0, 0, 0.1)",
+                        width: "800px",
+                        height: "450px",
                     }}
                 />
 
                 <Box>
-                    <Typography variant="h3" sx={{ fontWeight: theme.typography.fontWeightBold, marginBottom: "24px" }}>
-                        {countryName}
+                    <Typography variant="h3" sx={{ fontWeight: theme.typography.fontWeightBold, marginBottom: "24px", marginTop: "50px" }}>
+                        {countryData.name.common}
                     </Typography>
 
                     <Box display="flex" gap={8}>
                         <Box display="flex" flexDirection="column" gap={2}>
                             <Box display="flex" gap={1}>
                                 <Typography variant="body3">Native Name:</Typography>
-                                <Typography variant="body4">{countryData.nativeName}</Typography>
+                                <Typography variant="body4">{countryData.name.nativeName?.common || countryData.name.common}</Typography>
                             </Box>
                             <Box display="flex" gap={1}>
                                 <Typography variant="body3">Population:</Typography>
-                                <Typography variant="body4">{countryData.population}</Typography>
+                                <Typography variant="body4">{countryData.population.toLocaleString()}</Typography>
                             </Box>
                             <Box display="flex" gap={1}>
                                 <Typography variant="body3">Region:</Typography>
@@ -62,26 +68,26 @@ function CountryDetails() {
                             </Box>
                             <Box display="flex" gap={1}>
                                 <Typography variant="body3">Sub Region:</Typography>
-                                <Typography variant="body4">{countryData.subRegion}</Typography>
+                                <Typography variant="body4">{countryData.subregion}</Typography>
                             </Box>
                             <Box display="flex" gap={1}>
                                 <Typography variant="body3">Capital:</Typography>
-                                <Typography variant="body4">{countryData.capital}</Typography>
+                                <Typography variant="body4">{countryData.capital ? countryData.capital[0] : 'N/A'}</Typography>
                             </Box>
                         </Box>
 
                         <Box display="flex" flexDirection="column" gap={1}>
                             <Box display="flex" gap={1}>
                                 <Typography variant="body3">Top Level Domain:</Typography>
-                                <Typography variant="body4">{countryData.topLevelDomain}</Typography>
+                                <Typography variant="body4">{countryData.tld ? countryData.tld[0] : 'N/A'}</Typography>
                             </Box>
                             <Box display="flex" gap={1}>
                                 <Typography variant="body3">Currencies:</Typography>
-                                <Typography variant="body4">{countryData.currencies}</Typography>
+                                <Typography variant="body4">{Object.keys(countryData.currencies || {}).join(", ")}</Typography>
                             </Box>
                             <Box display="flex" gap={1}>
                                 <Typography variant="body3">Languages:</Typography>
-                                <Typography variant="body4">{countryData.languages.join(", ")}</Typography>
+                                <Typography variant="body4">{Object.values(countryData.languages || {}).join(", ")}</Typography>
                             </Box>
                         </Box>
                     </Box>
@@ -93,7 +99,7 @@ function CountryDetails() {
                             </Typography>
                             
                             <Box display="flex" flexWrap="wrap" gap={1}>
-                                {countryData.borderCountries.map((border) => (
+                                {countryData.borders?.map((border) => (
                                     <CustomButton 
                                         key={border} 
                                         size="small" 
@@ -105,7 +111,7 @@ function CountryDetails() {
                                     >
                                         {border}
                                     </CustomButton>
-                                ))}
+                                )) || "N/A"}
                             </Box>
                         </Box>
                     </Box>

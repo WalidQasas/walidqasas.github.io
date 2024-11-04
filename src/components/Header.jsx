@@ -9,8 +9,8 @@ import theme from "../assets/theme";
 function Header() {
   return (
     <HeaderWrapper>
-      <AppBar position="static" elevation={0} className={styles.headerContainer} sx={{ minHeight: "50px" , px: "75px"}}>
-        <Toolbar className={styles.headerContent} sx={{ minHeight: "50px", alignItems: "center" }} >
+      <AppBar position="static" elevation={0} className={styles.headerContainer} sx={{ minHeight: "50px" , px: "70px"}}>
+        <Toolbar disableGutters className={styles.headerContent} sx={{ minHeight: "50px", alignItems: "center", padding: 0, margin: 0 }} >
           <Typography variant="h1">
             Where in the world?
           </Typography>

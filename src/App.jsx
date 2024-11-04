@@ -16,16 +16,18 @@ function App() {
       <BrowserRouter>
         <Box sx={{
             bgcolor: "#fafafa",
+            padding: 0,
+            height: '100vh',
           }}>
           <AppLayout>
             <Header/>
             <Routes>
               <Route path="/" element={
-                <Container maxWidth="lg">
+                <Container maxWidth={false} disableGutters sx={{ px: '70px', margin: 0 }}>
                   <CountrySearch/>
                   <MainContentWrapper>
-                    <Sidebar className="sidebar"/>
-                    <CountryList className="country-list"/>
+                    <Sidebar/>
+                    <CountryList/>
                   </MainContentWrapper>
                 </Container>} />
               <Route path="country/:countryName" element={<CountryDetails />} />

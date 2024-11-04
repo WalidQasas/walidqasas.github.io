@@ -1,34 +1,39 @@
-import CountryCard from "./CountryCard";
-import { CountryListWrapper } from "./styles";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Box, CircularProgress, Typography } from '@mui/material';
+import CountryCard from './CountryCard';
 
-function CountryList() {
-    // Example data for countries
-    const countries = [
-        { name: "Brazil", code: "BR" },
-        { name: "United States", code: "US" },
-        { name: "Germany", code: "DE" },
-        { name: "France", code: "FR" },
-        { name: "Japan", code: "JP" },
-        { name: "Canada", code: "CA" },
-        { name: "Australia", code: "AU" },
-        { name: "Mexico", code: "MX" },
-        { name: "India", code: "IN" }
-    ];
+const CountryList = () => {
+  const [countries, setCountries] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    return (
-        <CountryListWrapper>
-            {countries.map((country) => (
-                <Link
-                    key={country.code}
-                    to={`/country/${country.name}`}
-                    style={{ textDecoration: "none" }}
-                >
-                    <CountryCard country={country} />
-                </Link>
-            ))}
-        </CountryListWrapper>
-    );
-}
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('https://restcountries.com/v3.1/all');
+        const data = await response.json();
+        setCountries(data);
+      } catch (err) {
+        setError('Error fetching countries');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCountries();
+  }, []);
+
+  if (loading) return <CircularProgress />;
+  if (error) return <Typography color="error">{error}</Typography>;
+
+  return (
+    <Box display="flex" flexWrap="wrap" gap={8} padding={0} sx={{height:"480px"}}>
+      {countries.map((country) => (
+        <CountryCard key={country.cca3} country={country} />
+      ))}
+    </Box>
+  );
+};
 
 export default CountryList;

@@ -5,13 +5,13 @@ import FavoriteCountry from "./FavoriteCountry";
 function Sidebar(){
     return(
         <SidebarWrapper>
-            <Typography variant="h6" >
+            <Typography variant="h2" >
                 Favourites
             </Typography>
             <Box
                 sx={{
-                    maxHeight: 200,
                     overflowY: 'auto',
+                    width: '230px',
                 }}
             >
                 <List>
