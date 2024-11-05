@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import CountryCard from './CountryCard';
+import SearchBar from './SearchBar';
+import CountrySearch from './CountrySearch';
 
-const CountryList = () => {
+const CountryList = ({ searchQuery }) => {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -24,15 +26,21 @@ const CountryList = () => {
     fetchCountries();
   }, []);
 
+  const filteredCountries = useMemo(() => {
+    return countries.filter((country) =>
+      country.name.common.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [countries, searchQuery]);
+
   if (loading) return <CircularProgress />;
   if (error) return <Typography color="error">{error}</Typography>;
 
   return (
-    <Box display="flex" flexWrap="wrap" gap={8} padding={0} sx={{height:"480px"}}>
-      {countries.map((country) => (
-        <CountryCard key={country.cca3} country={country} />
-      ))}
-    </Box>
+      <Box display="flex" flexWrap="wrap" gap={8} padding={0} sx={{height:"480px"}}>
+        {filteredCountries.map((country) => (
+          <CountryCard key={country.cca3} country={country} />
+        ))}
+      </Box>
   );
 };
 

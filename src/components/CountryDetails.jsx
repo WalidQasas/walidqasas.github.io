@@ -27,7 +27,6 @@ function CountryDetails() {
     }, [countryName]);
 
     if (loading) return <CircularProgress />;
-    if (!countryData) return <Typography variant="h1">Country not found.</Typography>;
 
     return (
         <Box sx={{ maxWidth: "1440px", margin: "0 70px" }}>
@@ -71,7 +70,7 @@ function CountryDetails() {
                             </Box>
                             <Box display="flex" gap={1}>
                                 <Typography variant="body3">Capital:</Typography>
-                                <Typography variant="body4">{countryData.capital ? countryData.capital[0] : 'N/A'}</Typography>
+                                <Typography variant="body4">{countryData.capital}</Typography>
                             </Box>
                         </Box>
 
@@ -105,7 +104,7 @@ function CountryDetails() {
                                         sx={{ 
                                             padding: "3px 10px", 
                                             backgroundColor: "inherit", 
-                                            minWidth: "100px" 
+                                            minWidth: "80px" 
                                         }}
                                     >
                                         {border}

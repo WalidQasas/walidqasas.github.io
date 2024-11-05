@@ -1,11 +1,31 @@
 import { TextField, InputAdornment } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
+import { useEffect, useState } from "react";
+
 // Check why InputProps is deprecated
 // Search is not done, add functionality use memoize
-function SearchBar() {
+function SearchBar({ setSearchQuery }) {
+
+    const [searchText, setSearchText] = useState("");
+
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            setSearchQuery(searchText);
+        }, 300);
+
+        return () => {
+            clearTimeout(handler);
+        };
+    }, [searchText, setSearchQuery]);
+
+    const handleChange = (event) => {
+        setSearchText(event.target.value);
+    };
+
     return (
         <TextField
-            id="input-with-icon-textfield"
+            value={searchText}
+            onChange={handleChange}
             placeholder="Search for a country..."
             variant="outlined"
             sx={{

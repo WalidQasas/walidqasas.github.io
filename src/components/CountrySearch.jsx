@@ -4,12 +4,13 @@ import FilterList from "./FilterList";
 import SearchBar from "./SearchBar";
 import { CountrySearchWrapper } from './styles';
 
-function CountrySearch() {
+function CountrySearch({ setSearchQuery }) {
+
     return (
         <CountrySearchWrapper>
         <Box display="flex" alignItems="center" gap={2}>
             <Box flexGrow={1}>
-                <SearchBar/>
+                <SearchBar setSearchQuery={setSearchQuery} />
             </Box>
 
             <Box>
