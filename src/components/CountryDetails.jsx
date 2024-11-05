@@ -27,7 +27,7 @@ function CountryDetails() {
     }, [countryName]);
 
     if (loading) return <CircularProgress />;
-    if (!countryData) return <Typography variant="h5">Country not found.</Typography>;
+    if (!countryData) return <Typography variant="h1">Country not found.</Typography>;
 
     return (
         <Box sx={{ maxWidth: "1440px", margin: "0 70px" }}>
