@@ -4,7 +4,6 @@ export const AppLayout = styled.div`
   display: flex;
   flex-direction: column;
   height: auto;
-  background-color: #fafafa;
 
   .content {
     display: flex;
@@ -14,14 +13,17 @@ export const AppLayout = styled.div`
 
 export const HeaderWrapper = styled.div`
     background-color: white !important;
-    color: #111517 !important;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 0 70px;
+
+    @media (max-width: 600px) {
+      padding: 0 15px;
+  }
 `
 export const HeaderContentWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: #111517 !important;
 `
 
 export const SidebarWrapper = styled.div`
@@ -33,6 +35,9 @@ export const SidebarWrapper = styled.div`
   margin-right: 30px;
   height: 420px;
 
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 export const CountryListWrapper = styled.div`
@@ -72,6 +77,14 @@ export const CountryCardWrapper = styled.div`
     width: 310px;
     height: 190px;
   }
+
+  @media (max-width: 600px) {
+    width: 280px;
+    .country-img {
+      width: 280px;
+      height: 160px;
+    }
+  }
 `;
 
 export const CountryCardTextWrapper = styled.div`
@@ -80,6 +93,11 @@ export const CountryCardTextWrapper = styled.div`
 
 export const CountrySearchWrapper = styled.div`
   margin-top: 40px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    margin-top: 20px;
+  }
 `
 
 export const CountrySearchBar = styled.div`

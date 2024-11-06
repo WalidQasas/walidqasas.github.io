@@ -3,7 +3,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useEffect, useState } from "react";
 
 // Check why InputProps is deprecated
-// Search is not done, add functionality use memoize
 function SearchBar({ setSearchQuery }) {
 
     const [searchText, setSearchText] = useState("");

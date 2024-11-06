@@ -9,9 +9,9 @@ import theme from "../assets/theme";
 function Header() {
   return (
     <HeaderWrapper>
-      <AppBar position="static" elevation={0} className={styles.headerContainer} sx={{ minHeight: "50px" , px: "70px"}}>
+      <AppBar position="static" elevation={0} className={styles.headerContainer} sx={{ minHeight: "50px" }}>
         <Toolbar disableGutters className={styles.headerContent} sx={{ minHeight: "50px", alignItems: "center", padding: 0, margin: 0 }} >
-          <Typography variant="h1">
+          <Typography variant="h1" sx={{ fontSize: { xs: "14px", md:"18px", lg:"18px" } }}>
             Where in the world?
           </Typography>
 
@@ -19,7 +19,7 @@ function Header() {
           <IconButton edge="end" aria-label="dark mode toggle" >
             
             <DarkModeIcon sx={{color: theme.typography.colorDark}}/>
-            <Typography className={styles.darkModeText} sx={{ fontSize: "14px", fontWeight:theme.typography.fontWeightMedium }}>
+            <Typography className={styles.darkModeText} sx={{ fontSize: { xs: "12px", md:"14px", lg:"14px" }, fontWeight:theme.typography.fontWeightMedium }}>
               Dark Mode
             </Typography>
 

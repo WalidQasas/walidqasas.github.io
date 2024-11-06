@@ -4,6 +4,7 @@ import { Box, Typography, CircularProgress } from '@mui/material';
 import theme from "../assets/theme";
 import CustomButton from './CustomButton';
 
+// Fix the border countries call (display the common name) 
 function CountryDetails() {
     const { countryName } = useParams();
     const navigate = useNavigate();
@@ -26,31 +27,38 @@ function CountryDetails() {
         fetchCountry();
     }, [countryName]);
 
-    if (loading) return <CircularProgress />;
+    if (loading) return <Box display="flex" justifyContent="center" alignItems="center" sx={{ height: "100vh", width: "100vw" }}
+    ><CircularProgress /></Box>;
 
     return (
-        <Box sx={{ maxWidth: "1440px", margin: "0 70px" }}>
-            <CustomButton onClick={() => navigate(-1)} startIcon={<span>←</span>}>
+        <Box sx={{ maxWidth: "1440px", margin:{xs:"0 15px", md:"0 70px", lg:"0 70px"}}}>
+            <CustomButton sx={{ padding:{xs:"5px 30px"}, ml:{xs:"10px"}, mt:{xs:"30px"}, mb:{xs:"70px"}   }}
+             onClick={() => navigate(-1)} startIcon={<span>←</span>}>
                 Back
             </CustomButton>
 
-            <Box display="flex" gap={8} alignItems="flex-start">
+            <Box display="flex" alignItems="flex-start" sx={{flexDirection:{xs:"column", md:"row", lg:"row"}, gap:{xs:"36px", md:"64px", lg:"64px"}}}>
                 <Box 
                     component="img"
                     src={countryData.flags?.svg}
                     alt={`${countryData.name.common} flag`}
+                    
                     sx={{
-                        width: "800px",
-                        height: "450px",
+                        width: {xs:"320px", md:"800px"},
+                        height: {xs:"190px", md:"450px"},
+                        justifyContent: {xs:"center"},
+                        ml:{xs:"10px"},
                     }}
                 />
 
-                <Box>
-                    <Typography variant="h3" sx={{ fontWeight: theme.typography.fontWeightBold, marginBottom: "24px", marginTop: "50px" }}>
+                <Box sx={{ml:{xs:"10px"} ,}}>
+                    <Typography variant="h3" sx={{ fontWeight: theme.typography.fontWeightBold, fontSize:{xs:"24px", md:"32px"}
+                    ,marginBottom: "24px",
+                         marginTop:{xs:"0px", md:"50px"} }}>
                         {countryData.name.common}
                     </Typography>
 
-                    <Box display="flex" gap={8}>
+                    <Box display="flex" gap={8} sx={{gap:{xs:"36px", md:"64px", lg:"64px"}, flexDirection:{xs:"column", md:"row"}}}>
                         <Box display="flex" flexDirection="column" gap={2}>
                             <Box display="flex" gap={1}>
                                 <Typography variant="body3">Native Name:</Typography>
@@ -104,7 +112,7 @@ function CountryDetails() {
                                         sx={{ 
                                             padding: "3px 10px", 
                                             backgroundColor: "inherit", 
-                                            minWidth: "80px" 
+                                            minWidth: {xs:"40px", md:"80px" }
                                         }}
                                     >
                                         {border}

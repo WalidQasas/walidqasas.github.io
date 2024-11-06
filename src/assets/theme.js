@@ -11,7 +11,6 @@ const theme = createTheme({
         colorLight: "#fafafa",
         // The following are general styles that will be used throughout our project
         h1: {
-            fontSize: "18px",
             fontWeight: 800,
         },
         h2: {

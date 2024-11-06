@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import CountryCard from './CountryCard';
-import SearchBar from './SearchBar';
-import CountrySearch from './CountrySearch';
 
 const CountryList = ({ searchQuery }) => {
   const [countries, setCountries] = useState([]);
@@ -32,11 +30,12 @@ const CountryList = ({ searchQuery }) => {
     );
   }, [countries, searchQuery]);
 
-  if (loading) return <CircularProgress />;
+  if (loading) return <Box display="flex" justifyContent="center" alignItems="center" sx={{ height: "100vh", width: "100vw" }}
+                      ><CircularProgress /></Box>;
   if (error) return <Typography color="error">{error}</Typography>;
 
   return (
-      <Box display="flex" flexWrap="wrap" gap={8} padding={0} sx={{height:"480px"}}>
+      <Box display="flex" flexWrap="wrap" gap={8} padding={0} sx={{height:"480px", justifyContent:{xs: "center"}}}>
         {filteredCountries.map((country) => (
           <CountryCard key={country.cca3} country={country} />
         ))}
