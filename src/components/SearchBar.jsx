@@ -2,7 +2,6 @@ import { TextField, InputAdornment } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import { useEffect, useState } from "react";
 
-// Check why InputProps is deprecated
 function SearchBar({ setSearchQuery }) {
 
     const [searchText, setSearchText] = useState("");
