@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import CountryCard from './CountryCard';
 
-const CountryList = ({ searchQuery }) => {
+const CountryList = ({ searchQuery ,backgroundColorSecond, textColor}) => {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -37,7 +37,7 @@ const CountryList = ({ searchQuery }) => {
   return (
       <Box display="flex" flexWrap="wrap" gap={8} padding={0} sx={{height:"480px", justifyContent:{xs: "center"}}}>
         {filteredCountries.map((country) => (
-          <CountryCard key={country.cca3} country={country} />
+          <CountryCard key={country.cca3} country={country} backgroundColorSecond={backgroundColorSecond} textColor={textColor}/>
         ))}
       </Box>
   );

@@ -12,7 +12,6 @@ export const AppLayout = styled.div`
 `;
 
 export const HeaderWrapper = styled.div`
-    background-color: white !important;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
     padding: 0 70px;
 
@@ -28,12 +27,13 @@ export const HeaderContentWrapper = styled.div`
 
 export const SidebarWrapper = styled.div`
   margin-top: 5px;
-  background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
   padding: 20px; 
   border-radius: 8px;  
   margin-right: 30px;
   height: 420px;
+  background-color: ${({ backgroundColorSecond }) => backgroundColorSecond};
+  color: ${({ textColor }) => textColor};
 
   @media (max-width: 600px) {
     display: none;
@@ -68,7 +68,6 @@ export const MainContentWrapper = styled.div`
 
 export const CountryCardWrapper = styled.div`
   width: 310px; 
-  background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
   border-radius: 8px;  
   overflow: hidden; 
@@ -98,8 +97,4 @@ export const CountrySearchWrapper = styled.div`
     width: 100%;
     margin-top: 20px;
   }
-`
-
-export const CountrySearchBar = styled.div`
-  background-color: white;
 `

@@ -1,5 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 
+
 const theme = createTheme({
     typography: {
         fontFamily: "Nunito Sans",
@@ -47,4 +48,40 @@ const theme = createTheme({
     },
 });
 
-export default theme;
+const lightTheme = createTheme({
+    palette: {
+      mode: 'light',
+      background: {
+        default: "#2b3945",
+        main: "#202c37",
+      },
+      text: {
+        primary: "#fff",
+        
+      },
+    },
+    typography: {
+      colorDark: "#fff",
+    },
+  });
+  
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+      background: {
+        default: "#fff",
+        main: "#fafafa",
+
+      },
+      text: {
+        primary: "#111517",
+        secondary: "#858585",
+      },
+    },
+    typography: {
+      colorDark: "#111517",
+    },
+  });
+  
+
+  export { lightTheme, darkTheme, theme };

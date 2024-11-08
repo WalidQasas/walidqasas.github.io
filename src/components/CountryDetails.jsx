@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Box, Typography, CircularProgress } from '@mui/material';
-import theme from "../assets/theme";
+import {theme} from "../assets/theme";
 import CustomButton from './CustomButton';
 
 // Fix the border countries call (display the common name) 

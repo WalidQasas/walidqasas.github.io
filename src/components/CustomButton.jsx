@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import { styled } from '@mui/system';
-import theme from '../assets/theme';
+import {theme} from '../assets/theme';
 
 // The styled button which will be used in the Country Details (Back / Border Countries)
 const StyledButton = styled(Button)({
