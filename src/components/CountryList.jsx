@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import CountryCard from './CountryCard';
 
-const CountryList = ({ searchQuery ,backgroundColorSecond, textColor}) => {
+const CountryList = ({ searchQuery ,backgroundColorSecond, textColor, filterRegion}) => {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -25,10 +25,12 @@ const CountryList = ({ searchQuery ,backgroundColorSecond, textColor}) => {
   }, []);
 
   const filteredCountries = useMemo(() => {
-    return countries.filter((country) =>
-      country.name.common.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  }, [countries, searchQuery]);
+    return countries.filter((country) => {
+        const matchesSearch = country.name.common.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesRegion = filterRegion ? country.region === filterRegion : true;
+        return matchesSearch && matchesRegion;
+    });
+  }, [countries, searchQuery, filterRegion]);
 
   if (loading) return <Box display="flex" justifyContent="center" alignItems="center" sx={{ height: "100vh", width: "100vw" }}
                       ><CircularProgress /></Box>;

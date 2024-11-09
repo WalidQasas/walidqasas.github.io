@@ -4,7 +4,7 @@ import FilterList from "./FilterList";
 import SearchBar from "./SearchBar";
 import { CountrySearchWrapper } from './styles';
 
-function CountrySearch({ setSearchQuery, backgroundColorSecond, isDarkMode}) {
+function CountrySearch({ setSearchQuery, backgroundColorSecond, isDarkMode, setFilterRegion}) {
 
     return (
         <CountrySearchWrapper>
@@ -16,13 +16,21 @@ function CountrySearch({ setSearchQuery, backgroundColorSecond, isDarkMode}) {
                 }}
 >
             <Box flexGrow={1}>
-                <SearchBar setSearchQuery={setSearchQuery} backgroundColorSecond={backgroundColorSecond} isDarkMode={isDarkMode}/>
+                <SearchBar 
+                setSearchQuery={setSearchQuery} 
+                backgroundColorSecond={backgroundColorSecond} 
+                isDarkMode={isDarkMode}
+                />
             </Box>
 
             <Box sx={{
                     mt:{xs: "20px"} ,
                 }}>
-                <FilterList backgroundColorSecond={backgroundColorSecond} isDarkMode={isDarkMode}/>
+                <FilterList 
+                backgroundColorSecond={backgroundColorSecond} 
+                isDarkMode={isDarkMode} 
+                setRegion={setFilterRegion}
+                />
             </Box>
         </Box>
         </CountrySearchWrapper>

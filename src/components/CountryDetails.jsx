@@ -5,7 +5,7 @@ import {theme} from "../assets/theme";
 import CustomButton from './CustomButton';
 
 // Fix the border countries call (display the common name) 
-function CountryDetails() {
+function CountryDetails({backgroundColorSecond, textColor}) {
     const { countryName } = useParams();
     const navigate = useNavigate();
     const [countryData, setCountryData] = useState(null);
@@ -32,7 +32,7 @@ function CountryDetails() {
 
     return (
         <Box sx={{ maxWidth: "1440px", margin:{xs:"0 15px", md:"0 70px", lg:"0 70px"}}}>
-            <CustomButton sx={{ padding:{xs:"5px 30px"}, ml:{xs:"10px"}, mt:{xs:"30px"}, mb:{xs:"70px"}   }}
+            <CustomButton backgroundColorSecond={backgroundColorSecond} textColor={textColor} sx={{ padding:{xs:"5px 30px"}, ml:{xs:"10px"}, mt:{xs:"30px"}, mb:{xs:"70px"}   }}
              onClick={() => navigate(-1)} startIcon={<span>←</span>}>
                 Back
             </CustomButton>
@@ -111,7 +111,8 @@ function CountryDetails() {
                                         size="small" 
                                         sx={{ 
                                             padding: "3px 10px", 
-                                            backgroundColor: "inherit", 
+                                            backgroundColor: backgroundColorSecond,
+                                            color: textColor, 
                                             minWidth: {xs:"40px", md:"80px" }
                                         }}
                                     >

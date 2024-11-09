@@ -3,14 +3,17 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import {lightTheme, darkTheme} from "../assets/theme";
 
 // Add the filter feature, don't forget in the video there is an empty option to showcase all of the countries
-function FilterList({ backgroundColorSecond, isDarkMode}) {
-    const [region, setRegion] = useState('');
+function FilterList({ backgroundColorSecond, isDarkMode, setRegion}) {
+    const [region, setLocalRegion] = useState('');
 
     const handleChange = (event) => {
-        setRegion(event.target.value);
+        const selectedRegion = event.target.value;
+        setLocalRegion(selectedRegion);
+        setRegion(selectedRegion);
     };
     const textColor = isDarkMode ? lightTheme.palette.text.primary : darkTheme.palette.text.secondary;
-    console.log('color', textColor)
+    const hoverBackground = isDarkMode ? darkTheme.palette.text.main : lightTheme.palette.text.main;
+
     return (
         <FormControl variant="outlined" sx={{ minWidth: 200, mr:"35px", backgroundColor: backgroundColorSecond, }}>
             <InputLabel sx={{color:textColor,}}>Filter by Region</InputLabel>
@@ -18,16 +21,32 @@ function FilterList({ backgroundColorSecond, isDarkMode}) {
                 value={region}
                 onChange={handleChange}
                 label="Filter by Region"
-                sx={{color:textColor,
+                sx={{
+                    backgroundColor: backgroundColorSecond,
+                    color:textColor,
                     "& .MuiSelect-icon": {
                     color: textColor,
                 }, }}
+                MenuProps={{
+                    PaperProps: {
+                        sx: {
+                            backgroundColor: backgroundColorSecond,
+                            "& .MuiMenuItem-root": {
+                                color: textColor,
+                                "&:hover": {
+                                    backgroundColor: hoverBackground,
+                                },
+                            },
+                        },
+                    },
+                }}
             >
-                <MenuItem value="Africa">Africa</MenuItem>
-                <MenuItem value="America">America</MenuItem>
-                <MenuItem value="Asia">Asia</MenuItem>
-                <MenuItem value="Europe">Europe</MenuItem>
-                <MenuItem value="Oceania">Oceania</MenuItem>
+                <MenuItem sx={{backgroundColor: backgroundColorSecond,color: textColor}} value="">No filter</MenuItem>
+                <MenuItem sx={{backgroundColor: backgroundColorSecond,color: textColor}} value="Africa">Africa</MenuItem>
+                <MenuItem sx={{backgroundColor: backgroundColorSecond,color: textColor}} value="Americas">Americas</MenuItem>
+                <MenuItem sx={{backgroundColor: backgroundColorSecond,color: textColor}} value="Asia">Asia</MenuItem>
+                <MenuItem sx={{backgroundColor: backgroundColorSecond,color: textColor}} value="Europe">Europe</MenuItem>
+                <MenuItem sx={{backgroundColor: backgroundColorSecond,color: textColor}} value="Oceania">Oceania</MenuItem>
             </Select>
         </FormControl>
     );
