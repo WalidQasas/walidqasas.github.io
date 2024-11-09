@@ -9,9 +9,20 @@ import { lightTheme, darkTheme, theme } from './assets/theme';
 import { useState } from 'react';
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem('isDarkMode');
+    return savedMode ? JSON.parse(savedMode) : false;
+  });
 
-  const toggleDarkMode = () => setIsDarkMode(prevMode => !prevMode);
+  const toggleDarkMode = () => {
+    setIsDarkMode(prevMode => {
+      const newMode = !prevMode;
+      localStorage.setItem('isDarkMode', JSON.stringify(newMode));
+      return newMode;
+    });
+  };
+
   const backgroundColor = isDarkMode ? lightTheme.palette.background.main : darkTheme.palette.background.main;
   const textColor = isDarkMode ? lightTheme.palette.text.primary : darkTheme.palette.text.primary;
   const backgroundColorSecond = isDarkMode ? lightTheme.palette.background.default : darkTheme.palette.background.default;

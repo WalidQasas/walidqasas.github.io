@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import {lightTheme, darkTheme} from "../assets/theme";
 
-// Add the filter feature, don't forget in the video there is an empty option to showcase all of the countries
 function FilterList({ backgroundColorSecond, isDarkMode, setRegion}) {
-    const [region, setLocalRegion] = useState('');
+    const [region, setLocalRegion] = useState(() => {
+        return localStorage.getItem('selectedRegion') || '';
+      });
 
     const handleChange = (event) => {
         const selectedRegion = event.target.value;
         setLocalRegion(selectedRegion);
         setRegion(selectedRegion);
+        localStorage.setItem('selectedRegion', selectedRegion);
     };
     const textColor = isDarkMode ? lightTheme.palette.text.primary : darkTheme.palette.text.secondary;
     const hoverBackground = isDarkMode ? darkTheme.palette.text.main : lightTheme.palette.text.main;
