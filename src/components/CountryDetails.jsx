@@ -27,7 +27,7 @@ function CountryDetails({backgroundColorSecond, textColor}) {
         fetchCountry();
     }, [countryName]);
 
-    if (loading) return <Box display="flex" justifyContent="center" alignItems="center" sx={{ height: "100vh", width: "100vw" }}
+    if (loading) return <Box display="flex" justifyContent="center" alignItems="center" sx={{ height: "100vh", width: "100vw", backgroundColor:'backgroundColorSecond'}}
     ><CircularProgress /></Box>;
 
     return (

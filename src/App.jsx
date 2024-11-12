@@ -34,8 +34,7 @@ function App() {
           <Box sx={{
               bgcolor: backgroundColor,
               color: textColor,
-              padding: 0,
-              height: 'auto',
+              height: '100vh',
             }}>
             <AppLayout>
               <Header onToggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode}/>
