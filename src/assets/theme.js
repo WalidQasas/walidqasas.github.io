@@ -65,23 +65,23 @@ const lightTheme = createTheme({
     },
   });
   
-  const darkTheme = createTheme({
-    palette: {
-      mode: 'dark',
-      background: {
-        default: "#fff",
-        main: "#fafafa",
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    background: {
+      default: "#fff",
+      main: "#fafafa",
 
-      },
-      text: {
-        primary: "#111517",
-        secondary: "#858585",
-      },
     },
-    typography: {
-      colorDark: "#111517",
+    text: {
+      primary: "#111517",
+      secondary: "#858585",
     },
-  });
+  },
+  typography: {
+    colorDark: "#111517",
+  },
+});
   
 
   export { lightTheme, darkTheme, theme };

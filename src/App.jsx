@@ -28,14 +28,14 @@ function App() {
   const backgroundColorSecond = isDarkMode ? lightTheme.palette.background.default : darkTheme.palette.background.default;
 
   return (
-    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme} >
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Box sx={{
               bgcolor: backgroundColor,
               color: textColor,
               padding: 0,
-              height: '100vh',
+              height: 'auto',
             }}>
             <AppLayout>
               <Header onToggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode}/>

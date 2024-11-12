@@ -87,7 +87,13 @@ export const CountryCardWrapper = styled.div`
 `;
 
 export const CountryCardTextWrapper = styled.div`
-  padding: 25px 20px 30px;
+  padding: 25px 20px 10px;
+
+  .favourites {
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
 `;
 
 export const CountrySearchWrapper = styled.div`

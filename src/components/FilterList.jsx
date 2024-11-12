@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import {lightTheme, darkTheme} from "../assets/theme";
 
@@ -7,10 +7,14 @@ function FilterList({ backgroundColorSecond, isDarkMode, setRegion}) {
         return localStorage.getItem('selectedRegion') || '';
       });
 
+      useEffect(() => {
+        localStorage.setItem('selectedRegion', region);
+        setRegion(region);
+    }, [region, setRegion]);
+
     const handleChange = (event) => {
         const selectedRegion = event.target.value;
         setLocalRegion(selectedRegion);
-        setRegion(selectedRegion);
         localStorage.setItem('selectedRegion', selectedRegion);
     };
     const textColor = isDarkMode ? lightTheme.palette.text.primary : darkTheme.palette.text.secondary;
@@ -44,6 +48,7 @@ function FilterList({ backgroundColorSecond, isDarkMode, setRegion}) {
                 }}
             >
                 <MenuItem sx={{backgroundColor: backgroundColorSecond,color: textColor}} value="">No filter</MenuItem>
+                <MenuItem sx={{backgroundColor: backgroundColorSecond,color: textColor}} value="Favourites">Favourites</MenuItem>
                 <MenuItem sx={{backgroundColor: backgroundColorSecond,color: textColor}} value="Africa">Africa</MenuItem>
                 <MenuItem sx={{backgroundColor: backgroundColorSecond,color: textColor}} value="Americas">Americas</MenuItem>
                 <MenuItem sx={{backgroundColor: backgroundColorSecond,color: textColor}} value="Asia">Asia</MenuItem>
