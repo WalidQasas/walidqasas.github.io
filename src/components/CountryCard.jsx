@@ -5,7 +5,7 @@ import { Typography, Box, IconButton } from "@mui/material";
 import FavoriteIcon from '@mui/icons-material/Star';
 import FavoriteBorderIcon from '@mui/icons-material/StarBorderOutlined';
 
-function CountryCard({ country, backgroundColorSecond, textColor}) {
+function CountryCard({ country, backgroundColorSecond, textColor, onDragStart, onDragEnd}) {
     const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
@@ -28,7 +28,17 @@ function CountryCard({ country, backgroundColorSecond, textColor}) {
     };
     
     return (
-        <Box sx={{bgcolor: backgroundColorSecond, color: textColor, height:'350px',   borderRadius: '8px'}}>
+        <Box 
+            sx={{
+                bgcolor: backgroundColorSecond, 
+                color: textColor, 
+                height:'350px',   
+                borderRadius: '8px'
+                }}
+                draggable
+                onDragStart={(e) => onDragStart(e, country)}
+                onDragEnd={onDragEnd}
+                >
             <CountryCardWrapper>
                 <Link to={`/country/${country.name.common}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                     <div>

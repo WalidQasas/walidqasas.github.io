@@ -5,6 +5,7 @@ import FavoriteCountry from "./FavoriteCountry";
 // Still not done (needs drag and drop and dynamic way of adding to the list)
 function Sidebar({backgroundColorSecond, textColor, countries}){
     const [favoriteCountries, setFavoriteCountries] = useState([]);
+    const [isDragOver, setIsDragOver] = useState(false);
 
     useEffect(() => {
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -28,23 +29,29 @@ function Sidebar({backgroundColorSecond, textColor, countries}){
     };
 
     const onDrop = (e) => {
+        e.preventDefault();
         const country = JSON.parse(e.dataTransfer.getData("country"));
         addFavorite(country);
-        e.target.style.border = "";
+        setIsDragOver(false);
       };
     
-      const onDragOver = (e) => {
+    const onDragOver = (e) => {
         e.preventDefault();
-        e.target.style.border = "2px solid #27ae60";
-      };
+        setIsDragOver(true);
+    };
 
+    const onDragLeave = () => {
+        setIsDragOver(false);
+    };
 
     return(
             <SidebarWrapper 
             backgroundColorSecond={backgroundColorSecond} 
-            textColor={textColor} 
+            textColor={textColor}
+            isDragOver={isDragOver}
             onDrop={onDrop}
             onDragOver={onDragOver} 
+            onDragLeave={onDragLeave}
             >
                 <Typography variant="h2" >
                     Favourites
@@ -68,7 +75,7 @@ function Sidebar({backgroundColorSecond, textColor, countries}){
                         ))
                     ) : (
                         <Typography sx={{ color: textColor, textAlign: 'center', mt: 2 }}>
-                            No favorites added
+                            No favorites. Drag a card here!
                         </Typography>
                     )}
                 </List>

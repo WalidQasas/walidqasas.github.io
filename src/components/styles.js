@@ -27,13 +27,17 @@ export const HeaderContentWrapper = styled.div`
 
 export const SidebarWrapper = styled.div`
   margin-top: 5px;
+  margin-left: 2px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+  position: "sticky";
+  top: 10px;
   padding: 20px; 
   border-radius: 8px;  
   margin-right: 30px;
   height: 420px;
   background-color: ${({ backgroundColorSecond }) => backgroundColorSecond};
   color: ${({ textColor }) => textColor};
+  outline: ${({ isDragOver }) => (isDragOver ? "1px solid #27ae60" : "none")};
 
   @media (max-width: 600px) {
     display: none;
