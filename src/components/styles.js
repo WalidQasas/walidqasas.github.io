@@ -27,7 +27,7 @@ export const HeaderContentWrapper = styled.div`
 
 export const SidebarWrapper = styled.div`
   margin-top: 5px;
-  margin-left: 2px;
+  margin-left: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
   position: "sticky";
   top: 10px;
@@ -58,15 +58,10 @@ export const MainContentWrapper = styled.div`
   overflow-y: auto;
 
   .sidebar {
-    overflow-y: scroll;
     height: 360px;
-  }
-
-  .country-list {
-    flex-grow: 1;
-    flex-wrap: wrap; 
-    padding: 10px;
-    height: 450px;
+    position: sticky;
+    top: 5px;
+    flex-shrink: 0;
   }
 `;
 

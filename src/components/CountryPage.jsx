@@ -3,7 +3,7 @@ import CountrySearch from './CountrySearch';
 import CountryList from './CountryList';
 import Sidebar from './Sidebar';
 import { MainContentWrapper } from './styles';
-import { Container, CircularProgress, Typography } from '@mui/material';
+import { Container, CircularProgress, Typography, Box } from '@mui/material';
 
 // This page was needed to be able to utilize the search query in an easier way to pass it to other components (plus cleaner App.jsx code)
 const CountryPage = ({backgroundColorSecond, textColor, isDarkMode}) => {
@@ -49,11 +49,13 @@ const CountryPage = ({backgroundColorSecond, textColor, isDarkMode}) => {
         setFilterRegion={setFilterRegion}
         />
         <MainContentWrapper>
-          <Sidebar 
-          backgroundColorSecond={backgroundColorSecond} 
-          textColor={textColor}
-          countries={countries}
-          />
+          <Box className="sidebar">
+            <Sidebar 
+            backgroundColorSecond={backgroundColorSecond} 
+            textColor={textColor}
+            countries={countries}
+            />
+          </Box>
           <CountryList 
           backgroundColorSecond={backgroundColorSecond} 
           textColor={textColor} 
