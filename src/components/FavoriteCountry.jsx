@@ -1,14 +1,12 @@
 import React from 'react';
 import { ListItem, ListItemText, IconButton, Box } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import exampleImg from "../assets/flags/br.svg"
-// Fix the flag size and add a functionality for the x button
 
-function FavoriteCountry({textColor}) {
+function FavoriteCountry({countryName, flags, textColor, onRemove}) {
     return (
         <ListItem
             secondaryAction={
-                <IconButton edge="end" aria-label="remove">
+                <IconButton edge="end" aria-label="remove" onClick={() => onRemove(countryName)}>
                     <CloseIcon 
                     sx={{color:textColor,
                     "& .MuiSelect-icon": {
@@ -20,16 +18,17 @@ function FavoriteCountry({textColor}) {
             <Box display="flex" alignItems="center" gap={1}>
                 <Box
                     component="img"
-                    src={exampleImg}
-                    
+                    src={flags.svg}
+                    alt={`${countryName} flag`}
+
                     sx={{
                         width: 40,
                         height: 20,
-                        borderRadius: '8px' , 
+                        borderRadius: '6px' , 
                         objectFit: 'cover', 
                     }}
                 />
-                <ListItemText primary="Brazil" />
+                <ListItemText primary={countryName} sx={{ color: textColor }} />
             </Box>
         </ListItem>
     );
