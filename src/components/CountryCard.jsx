@@ -28,7 +28,7 @@ function CountryCard({ country, backgroundColorSecond, textColor}) {
     };
     
     return (
-        <Box sx={{bgcolor: backgroundColorSecond, color: textColor, height:'auto',   borderRadius: '8px'}}>
+        <Box sx={{bgcolor: backgroundColorSecond, color: textColor, height:'350px',   borderRadius: '8px'}}>
             <CountryCardWrapper>
                 <Link to={`/country/${country.name.common}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                     <div>
