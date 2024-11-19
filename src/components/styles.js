@@ -35,6 +35,7 @@ export const SidebarWrapper = styled.div`
   border-radius: 8px;  
   margin-right: 30px;
   height: 420px;
+  overflow-y: hidden;
   background-color: ${({ backgroundColorSecond }) => backgroundColorSecond};
   color: ${({ textColor }) => textColor};
   outline: ${({ isDragOver }) => (isDragOver ? "1px solid #27ae60" : "none")};

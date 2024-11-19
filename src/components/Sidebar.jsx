@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { SidebarWrapper } from "./styles"
 import { Typography, Box, List } from "@mui/material";
 import FavoriteCountry from "./FavoriteCountry";
-// Still not done (needs drag and drop and dynamic way of adding to the list)
+
 function Sidebar({backgroundColorSecond, textColor, countries}){
     const [favoriteCountries, setFavoriteCountries] = useState([]);
     const [isDragOver, setIsDragOver] = useState(false);
@@ -59,6 +59,7 @@ function Sidebar({backgroundColorSecond, textColor, countries}){
                 <Box
                     sx={{
                         overflowY: 'auto',
+                        maxHeight: '100%',
                         width: '230px',
                     }}
                 >
