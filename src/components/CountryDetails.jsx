@@ -5,35 +5,36 @@ import {theme} from "../assets/theme";
 import CustomButton from './CustomButton';
 
 // Fix the border countries call (display the common name) 
-function CountryDetails({backgroundColorSecond, textColor}) {
+function CountryDetails({backgroundColorSecond, textColor, allCountries}) {
     const { countryName } = useParams();
     const navigate = useNavigate();
     const [countryData, setCountryData] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchCountry = async () => {
-            try {
-                const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
-                const data = await response.json();
-                setCountryData(data[0]);
-            } catch (error) {
-                console.error("Error fetching country details:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchCountry();
-    }, [countryName]);
+        const country = allCountries.find(
+            (c) => c.name.common.toLowerCase() === countryName.toLowerCase()
+          );
+          setCountryData(country || null);
+          setLoading(false);
+        }, [countryName, allCountries]);
 
     if (loading) return <Box display="flex" justifyContent="center" alignItems="center" sx={{ height: "100vh", width: "100vw", backgroundColor:'backgroundColorSecond'}}
     ><CircularProgress /></Box>;
 
+    const borderNames = countryData.borders
+    ? countryData.borders.map((borderCode) => {
+        const borderCountry = allCountries.find(
+          (c) => c.cca3 === borderCode
+        );
+        return borderCountry ? borderCountry.name.common : borderCode;
+      })
+    : [];
+    
     return (
         <Box sx={{ maxWidth: "1440px", margin:{xs:"0 15px", md:"0 70px", lg:"0 70px"}}}>
             <CustomButton backgroundColorSecond={backgroundColorSecond} textColor={textColor} sx={{ padding:{xs:"5px 30px"}, ml:{xs:"10px"}, mt:{xs:"30px"}, mb:{xs:"70px"}   }}
-             onClick={() => navigate(-1)} startIcon={<span>←</span>}>
+             onClick={() => navigate('/')} startIcon={<span>←</span>}>
                 Back
             </CustomButton>
 
@@ -105,20 +106,23 @@ function CountryDetails({backgroundColorSecond, textColor}) {
                             </Typography>
                             
                             <Box display="flex" flexWrap="wrap" gap={1}>
-                                {countryData.borders?.map((border) => (
-                                    <CustomButton 
-                                        key={border} 
-                                        size="small" 
-                                        sx={{ 
-                                            padding: "3px 10px", 
-                                            backgroundColor: backgroundColorSecond,
-                                            color: textColor, 
-                                            minWidth: {xs:"40px", md:"80px" }
-                                        }}
-                                    >
-                                        {border}
-                                    </CustomButton>
-                                )) || "N/A"}
+                                {borderNames.length > 0
+                                    ? borderNames.map((name) => (
+                                          <CustomButton
+                                              key={name}
+                                              size="small"
+                                              sx={{
+                                                  padding: "3px 10px",
+                                                  backgroundColor: backgroundColorSecond,
+                                                  color: textColor,
+                                                  minWidth: { xs: "40px", md: "80px" },
+                                              }}
+                                              onClick={() => navigate(`/country/${name}`)}
+                                              >
+                                              {name}
+                                          </CustomButton>
+                                      ))
+                                    : "N/A"}
                             </Box>
                         </Box>
                     </Box>
