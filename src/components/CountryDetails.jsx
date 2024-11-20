@@ -4,7 +4,6 @@ import { Box, Typography, CircularProgress } from '@mui/material';
 import {theme} from "../assets/theme";
 import CustomButton from './CustomButton';
 
-// Fix the border countries call (display the common name) 
 function CountryDetails({backgroundColorSecond, textColor, allCountries}) {
     const { countryName } = useParams();
     const navigate = useNavigate();
@@ -79,7 +78,7 @@ function CountryDetails({backgroundColorSecond, textColor, allCountries}) {
                             </Box>
                             <Box display="flex" gap={1}>
                                 <Typography variant="body3">Capital:</Typography>
-                                <Typography variant="body4">{countryData.capital}</Typography>
+                                <Typography variant="body4">{countryData.capital.join(", ")}</Typography>
                             </Box>
                         </Box>
 

@@ -24,44 +24,43 @@ function SearchBar({ setSearchQuery , backgroundColorSecond, isDarkMode}) {
     };
     return (
         <TextField
-    value={searchText}
-    onChange={handleChange}
-    placeholder="Search for a country..."
-    variant="outlined"
-    sx={{
-        width: "100%",
-        maxWidth: "400px",
-        backgroundColor: backgroundColorSecond,
-        border: "none",
-        borderRadius: "5px",
-        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1),0px -2px 4px rgba(0, 0, 0, 0.1)",
-        "& .MuiOutlinedInput-root": {
-            "& fieldset": {
+            value={searchText}
+            onChange={handleChange}
+            placeholder="Search for a country..."
+            variant="outlined"
+            sx={{
+                width: "100%",
+                maxWidth: "400px",
+                backgroundColor: backgroundColorSecond,
                 border: "none",
-            },
-            paddingRight: "8px",
-            color: textColor,
-        },
-        "& .MuiInputAdornment-root": {
-            color: textColor,
-            marginRight: "8px",
-        },
-        "& input": {
-            color: textColor,
-        },
-        "& input::placeholder": {
-            color: textColor,
-        },
-    }}
-    InputProps={{
-        startAdornment: (
-            <InputAdornment position="start">
-                <SearchIcon />
-            </InputAdornment>
-        ),
-    }}
-/>
-
+                borderRadius: "5px",
+                boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1),0px -2px 4px rgba(0, 0, 0, 0.1)",
+                "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                        border: "none",
+                    },
+                    paddingRight: "8px",
+                    color: textColor,
+                },
+                "& .MuiInputAdornment-root": {
+                    color: textColor,
+                    marginRight: "8px",
+                },
+                "& input": {
+                    color: textColor,
+                },
+                "& input::placeholder": {
+                    color: textColor,
+                },
+            }}
+            InputProps={{
+                startAdornment: (
+                    <InputAdornment position="start">
+                        <SearchIcon />
+                    </InputAdornment>
+                ),
+            }}
+        />
     );
 }
 
