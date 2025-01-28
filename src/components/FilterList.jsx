@@ -22,11 +22,11 @@ function FilterList({ backgroundColorSecond, isDarkMode, setRegion}) {
 
     return (
         <FormControl variant="outlined" sx={{ minWidth: 200, mr:"35px", backgroundColor: backgroundColorSecond, }}>
-            <InputLabel sx={{color:textColor,}}>Filter by Region</InputLabel>
+            <InputLabel sx={{color:textColor,}}>Filter by</InputLabel>
             <Select
                 value={region}
                 onChange={handleChange}
-                label="Filter by Region"
+                label="Filter by"
                 sx={{
                     backgroundColor: backgroundColorSecond,
                     color:textColor,

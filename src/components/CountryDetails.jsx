@@ -4,7 +4,7 @@ import { Box, Typography, CircularProgress } from '@mui/material';
 import {theme} from "../assets/theme";
 import CustomButton from './CustomButton';
 
-function CountryDetails({backgroundColorSecond, textColor, allCountries}) {
+function CountryDetails({backgroundColorSecond, textColor, allCountries}) { // Props drilling (use context to not do this) create a context for countries
     const { countryName } = useParams();
     const navigate = useNavigate();
     const [countryData, setCountryData] = useState(null);
