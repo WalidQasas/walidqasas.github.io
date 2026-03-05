@@ -31,19 +31,42 @@ function App() {
   const textColor = isDarkMode ? lightTheme.palette.text.primary : darkTheme.palette.text.primary;
   const backgroundColorSecond = isDarkMode ? lightTheme.palette.background.default : darkTheme.palette.background.default;
 
+  // useEffect(() => {
+  //   const fetchCountries = async () => {
+  //     try {
+  //       const response = await fetch('https://restcountries.com/v3.1/all');
+  //       const data = await response.json();
+  //       setAllCountries(data);
+  //     } catch (err) {
+  //       setError('Error fetching countries');
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchCountries();
+  // }, []);
+  
   useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const response = await fetch('https://restcountries.com/v3.1/all');
-        const data = await response.json();
-        setAllCountries(data);
-      } catch (err) {
-        setError('Error fetching countries');
-      } finally {
-        setLoading(false);
+  const fetchCountries = async () => {
+    try {
+      const response = await fetch(
+        'https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital,tld,currencies,languages,borders,cca3'
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch countries");
       }
-    };
-    fetchCountries();
+
+      const data = await response.json();
+      setAllCountries(data);
+
+    } catch (err) {
+      setError('Error fetching countries');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchCountries();
   }, []);
 
   if (loading) {
@@ -63,7 +86,7 @@ function App() {
           <Box sx={{
               bgcolor: backgroundColor,
               color: textColor,
-              height: '100vh',
+              minHeight: '100vh',
             }}>
             <AppLayout>
               <Header onToggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode}/>
