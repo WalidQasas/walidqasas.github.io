@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# Country Explorer 🌍
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Country Explorer is a responsive React + TypeScript web application that allows users to explore information about countries worldwide. Users can search, filter by region, view country details, toggle between light and dark modes, and save their favorite countries.
 
-## Available Scripts
+This project was developed during my time at Harri.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* **Search and Filter:** Easily search countries by name and filter by region or favorites.
+* **Country Details:** View detailed information including population, region, subregion, capital, top-level domain, currencies, languages, and bordering countries.
+* **Favorites:** Mark countries as favorites and persist them across sessions using `localStorage`.
+* **Dark/Light Mode:** Toggle between dark and light themes; the preference is saved for future visits.
+* **Responsive Design:** Fully responsive layout optimized for mobile, tablet, and desktop.
+* **Performance Optimizations:** Images are resized and optimized for web performance.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* **React** with **TypeScript**
+* **React Router** for routing
+* **Material UI (MUI)** for UI components
+* **LocalStorage** for persisting user preferences and favorites
+* **Custom CSS and styled-components** for layout and design
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## API
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Data is fetched from the [REST Countries API v3.1](https://restcountries.com/) using the `/all` endpoint with specified fields:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+https://restcountries.com/v3.1/all?fields=name,flags,population,region,subregion,capital,tld,currencies,languages,borders,cca3
+```
 
-### `npm run eject`
+This ensures the application only requests the necessary fields and avoids API errors.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Clone the repository:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+git clone https://github.com/WalidQasas/walidqasas.github.io.git
+cd walidqasas.github.io
+```
 
-## Learn More
+2. Install dependencies:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Run the development server:
 
-### Code Splitting
+```bash
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The app will be available at [http://localhost:3000](http://localhost:3000).
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Deployment
 
-### Making a Progressive Web App
+This project is deployed via GitHub Pages. Make sure to run:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+npm run build
+```
 
-### Advanced Configuration
+Then push the `build` folder to your GitHub repository for live hosting at:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+https://walidqasas.github.io
+```
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Future Improvements
 
-### `npm run build` fails to minify
+* Add Lazy Loading.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
